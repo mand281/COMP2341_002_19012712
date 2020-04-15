@@ -11,20 +11,15 @@ Student no: 19012712
 <!DOCTYPE html>
 <html  xml:lang="en" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="style.css">
-
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Portraits by Amanda</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
     
 <body>
 <!-- Header displayed on every page -->
     <header>
-        <!--  <img src="Media/images/cover.684373.2400x600-785x196.jpg" alt="Portraits by Amanda collage banner" />-->
-        <img src="media/images/banner-940x100-1-785x84.png" alt="Portraits by Amanda collage banner" /> 
-        
+       <img src="media/images/PBA_banner_1048x214.png" alt="Portraits by Amanda collage banner" /> 
                <nav>
             <ul>
                 <li><a href="index.html"> Home</a></li>
@@ -44,7 +39,29 @@ The information should be sent to https://temitope-alade.wbs.uni.worc.ac.uk/mail
 The server will process the information and return a text message which should be displayed to the user by updating a relevant element on the page. 
 Both name fields should only contain letters and spaces and it should not be possible to submit an invalid email address. 
 -->
-  
+ <!-- <form id="testform" action="https://temitope-alade.wbs.uni.worc.ac.uk/mailing.php" method="POST">
+    
+
+ <!--   <label for=name>Name</label>
+
+<input type="text" name=fullname placeholder="enter name"  pattern="(^[A-Z]+)([a-z]*$){6,10}" title="First Name: " > <br><br>
+
+<label for=name>Email </label>
+<input type="email" name=email placeholder="Email@address.com"  pattern="^([a-z0-9_.-]+)@([da-z.-]+).([a-z.]{2,6})$"
+ title="Email: " > <br><br> -->
+<form id="testform" action="test.php" method="POST">
+<br> To join our mailing list to receive exclusive offers and information,  Please fill in your details below and press submit<br><br>
+<label for=forename> First Name </label> 
+<input type="text" name="forename" maxlength = "11"  pattern="^0\d*${11}" title="forename: " ><br><br>   
+<label for=surname> Surname </label> 
+<input type="text" name="surname"  maxlength = "11"  pattern="^0\d*${11}" title="Surname: " ><br><br>
+    
+<label for=email> Email </label> 
+<input type="text" name="email" placeholder="Email@email.com"  pattern="/.+\@(?:[\w\d]+\.?)/g" title="Email: " ><br><br>
+<input type=submit value="Submit">
+      
+</form>
+     
     
 <footer>Design by <a href="http://www.amandahorton.co.uk">Amanda Horton</a>   
     
