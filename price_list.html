@@ -1,60 +1,138 @@
- <!--
-Design by Amanda Horton
-http://www.amandahorton.co.uk
+<!--
 University of Worcester
-COMP2341
+COMP2341 WEB APPLICATIONS
 Assignment 2
 Student no: 19012712
+
+Design by Amanda Horton
+https://hora4-19.wbs.uni.worc.ac.uk/COMP2341/
+
 -->
-
-
 <!DOCTYPE html>
-<html  xml:lang="en" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="style.css">
+ <html xml:lang="en" lang="en">
 
-    <title>Portraits by Amanda</title>
+ <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	 
+<!-- Include style sheets and javascript files -->
+	 
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="404style.css">
+
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
+	<script src="header.js"> </script>
+
+
+	<title>Portraits by Amanda</title>
 </head>
-    
+
 <body>
-<!-- Header displayed on every page -->
-    <header>
-        <!--  <img src="Media/images/cover.684373.2400x600-785x196.jpg" alt="Portraits by Amanda collage banner" />-->
-        <img src="media/images/banner-940x100-1-785x84.png" alt="Portraits by Amanda collage banner" /> 
-        
-               <nav>
-            <ul>
-                <li><a href="index.html"> Home</a></li>
-                <li><a href="about_us.html" > About Us</a></li>
-                <li><a href="gallery.html"> Gallery</a></li>
-                <li><a href="life_drawing.html"> Life Drawing</a></li>
-                <li><a href="price_list.html"> Price List</a></li>
-                <li><a href="contact.html"> Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+
+	<!-- Header displays a banner image and navigation menu -->
+	
+	<header><canvas id="canvas" width="1900" height="214"></canvas>
+		<nav>
+			<ul>
+				<li><a href="index.html"> Home</a></li>
+				<li><a href="about_us.html"> About the Artist</a></li>
+				<li><a href="gallery.html"> Gallery</a></li>
+				<li><a href="products.html"> Prints</a></li>
+				<li><a href="price_list.html"> Price List</a></li>
+				<li><a href="contact.html"> Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+<!-- Dropdown menus created so that the user can alter the text and background -->
+	
+	<div class="dropdownmenus">
+		<div class="dropdown">
+			<button class="dropdowntxt">Text Settings</button>
+			<div class="dropdown-content">
+				<button id="increasetxt" onclick="doubletxt()">Increase</button>
+				<button id="resettxt" onclick="settxt()">Reset</button>
+				<button id="decreasetxt" onclick="halftxt()">Decrease</button>
+			</div>
+		</div>
+		<div class="dropdown2">
+			<button class="dropdownbg">Change background </button>
+			<div class="dropdown-content2">
+				<button id="backg" onclick="darkbg()">Night</button>
+				<button id="backg" onclick="lightbg()">Day</button>
+			</div>
+		</div>
+	</div>
     
+
 <!-- Price list page  To show versions of product available to comply with 
 (8)	A different advertisement of your product every time a user visits your product page. The previously displayed ad should be stored in Local Storage using the Local Storage API and also  
 (9) The price of the product in five major currencies. This should be obtained using an appropriate web service and processed using Ajax calls, and the results used to update a relevant element on the page.  
 -->
-    
-<footer>Design by <a href="http://www.amandahorton.co.uk">Amanda Horton</a>   <!-- Social media links -->
-        <section class="social">
-        Follow us:
-            <ul>
-                <li><a href='https://www.facebook.com/amandasportraits'><img src="media/social/1_Facebook2_colored_svg-128.png" alt='Facebook' /></a></li>
-                
-                <li><a href='https://twitter.com/amandaportraits'><img src="media/social/1_Twitter3_colored_svg-128.png" alt='Twitter' /></a></li>
-                
-                <li><a href='https://www.instagram.com/portraitsbyamanda/'><img src="media/social/1_Instagram_colored_svg_1-128.png" alt='Instagram' /></a></li>
-                
-                <li><a href='https://www.pinterest.co.uk/amandasportraits/'><img src="media/social/1_Pinterest_colored_svg-128.png" alt='Pinterest' /></a></li>
-            </ul>
-        </section></footer>
-        
+
+     <table summary="This list describes our entire catalogue of products">
+         <h1>Price List</h1>
+         <thead>
+             <tr>
+                 <th>Size</th>
+                 <th>GBP</th>
+                 <th>USD</th>
+                 <th>EUR</th>  
+                 <th>JPY</th>  
+                 <th>CAD</th>  
+                 <th>AUD</th>  
+             </tr>
+         </thead>
+         
+         <tbody>
+         <tr>
+                 <td>A4 30 x 21 cm</td>
+                  <td id ="GBPpriceA4"></td>
+                  <td id ="USDpriceA4"></td>
+                  <td id ="EURpriceA4"></td>
+                  <td id ="JPYpriceA4"></td>
+                  <td id ="CADpriceA4"></td>
+                  <td id ="AUDpriceA4"></td>
+          </tr>
+          <tr>
+                 <td>A3  42 x 30 cm</td>
+                  <td id ="GBPpriceA3"></td>
+                  <td id ="USDpriceA3"></td>
+                  <td id ="EURpriceA3"></td>
+                  <td id ="JPYpriceA3"></td>
+                  <td id ="CADpriceA3"></td>
+                  <td id ="AUDpriceA3"></td>
+             </tr>
+             <tr>
+                 <td> Flat rate Postage and Packing</td>
+                 <td id ="posttxt7"></td>
+                 <td id ="posttxt8"></td>
+                 <td id ="posttxt9"></td>
+                 <td id ="posttxt10"></td>
+                 <td id ="posttxt11"></td>                 
+                 <td id ="posttxt12"></td>
+             </tr>
+         </tbody>
+     </table>
+       
+<!-- Footer displays links to several social media websites-->
+	
+	<footer class="social">
+		<p> Design by Amanda Horton </p>
+		<!-- Social media links -->
+
+
+		<ul> Follow us:
+			<li><a href='https://www.facebook.com/amandasportraits'><img src="media/social/1_Facebook2_colored_svg-128.png" alt='Facebook' /></a></li>
+
+			<li><a href='https://twitter.com/amandaportraits'><img src="media/social/1_Twitter3_colored_svg-128.png" alt='Twitter' /></a></li>
+
+			<li><a href='https://www.instagram.com/portraitsbyamanda/'><img src="media/social/1_Instagram_colored_svg_1-128.png" alt='Instagram' /></a></li>
+
+			<li><a href='https://www.pinterest.co.uk/amandasportraits/'><img src="media/social/1_Pinterest_colored_svg-128.png" alt='Pinterest' /></a></li>
+		</ul>
+	</footer>
+
+	<!-- Script source put here so user settings would display correctly -->
+	<script src="index.js"> </script>
 </body>
 </html>

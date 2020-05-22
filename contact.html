@@ -1,83 +1,107 @@
- <!--
-Design by Amanda Horton
-http://www.amandahorton.co.uk
+<!--
 University of Worcester
-COMP2341
+COMP2341 WEB APPLICATIONS
 Assignment 2
 Student no: 19012712
+
+Design by Amanda Horton
+https://hora4-19.wbs.uni.worc.ac.uk/COMP2341/
+
 -->
-
-
 <!DOCTYPE html>
-<html  xml:lang="en" lang="en">
-<head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Portraits by Amanda</title>
+ <html xml:lang="en" lang="en">
+
+ <head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	 
+<!-- Include style sheets and javascript files -->
+	 
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="404style.css">
+
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
+	<script src="header.js"> </script>
+
+
+	<title>Portraits by Amanda</title>
 </head>
-    
+
 <body>
-<!-- Header displayed on every page -->
-    <header>
-       <img src="media/images/PBA_banner_1048x214.png" alt="Portraits by Amanda collage banner" /> 
-               <nav>
-            <ul>
-                <li><a href="index.html"> Home</a></li>
-                <li><a href="about_us.html" > About Us</a></li>
-                <li><a href="gallery.html"> Gallery</a></li>
-                <li><a href="life_drawing.html"> Life Drawing</a></li>
-                <li><a href="price_list.html"> Price List</a></li>
-                <li><a href="contact.html"> Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-<!-- Contact options to include a contact form to comply with 
-(10) A small form that will allow the user to join a mailing list promising further information about the product. 
-This should collect the first name, last name and email address. 
-The information should be sent to https://temitope-alade.wbs.uni.worc.ac.uk/mailing.php using Ajax POST. 
-The server will process the information and return a text message which should be displayed to the user by updating a relevant element on the page. 
+
+	<!-- Header displays a banner image and navigation menu -->
+	
+	<header><canvas id="canvas" width="1900" height="214"></canvas>
+		<nav>
+			<ul>
+				<li><a href="index.html"> Home</a></li>
+				<li><a href="about_us.html"> About the Artist</a></li>
+				<li><a href="gallery.html"> Gallery</a></li>
+				<li><a href="products.html"> Prints</a></li>
+				<li><a href="price_list.html"> Price List</a></li>
+				<li><a href="contact.html"> Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+<!-- Dropdown menus created so that the user can alter the text and background -->
+	
+	<div class="dropdownmenus">
+		<div class="dropdown">
+			<button class="dropdowntxt">Text Settings</button>
+			<div class="dropdown-content">
+				<button id="increasetxt" onclick="doubletxt()">Increase</button>
+				<button id="resettxt" onclick="settxt()">Reset</button>
+				<button id="decreasetxt" onclick="halftxt()">Decrease</button>
+			</div>
+		</div>
+		<div class="dropdown2">
+			<button class="dropdownbg">Change background </button>
+			<div class="dropdown-content2">
+				<button id="backg" onclick="darkbg()">Night</button>
+				<button id="backg" onclick="lightbg()">Day</button>
+			</div>
+		</div>
+	</div>
+
+
+<!-- Asmall form allows the user to join a mailing list promising further information about the product. The information is sent to https://temitope-alade.wbs.uni.worc.ac.uk/mailing.php using Ajax POST. 
 Both name fields should only contain letters and spaces and it should not be possible to submit an invalid email address. 
 -->
- <!-- <form id="testform" action="https://temitope-alade.wbs.uni.worc.ac.uk/mailing.php" method="POST">
-    
 
- <!--   <label for=name>Name</label>
+	<form id="testform" action="https://temitope-alade.wbs.uni.worc.ac.uk/mailing.php" method="POST" onsubmit="SuccessMessage()">
+		<br> To join our mailing list to receive exclusive offers and information, Please fill in your details below and press submit<br><br>
+		<label for=forename> First Name </label>
+	<!-- Regex used to prevent an invalid name format from being entered ie only letters and no spaces -->	
+		<input type="text" name="forename" maxlength="11" pattern="^0\d*${11}" title="forename: "><br><br>
+		<label for=surname> Surname </label>
+		<input type="text" name="surname" maxlength="11" pattern="^0\d*${11}" title="Surname: "><br><br>
 
-<input type="text" name=fullname placeholder="enter name"  pattern="(^[A-Z]+)([a-z]*$){6,10}" title="First Name: " > <br><br>
+		<label for=email> Email </label>
+	<!-- Regex used to prevent an invalid email format from being entered -->
+		<input type="text" name="email" pattern="/.+\@(?:[\w\d]+\.?)/g" title="Email: "><br><br>
+		<input type=submit value="Submit">
 
-<label for=name>Email </label>
-<input type="email" name=email placeholder="Email@address.com"  pattern="^([a-z0-9_.-]+)@([da-z.-]+).([a-z.]{2,6})$"
- title="Email: " > <br><br> -->
-<form id="testform" action="test.php" method="POST">
-<br> To join our mailing list to receive exclusive offers and information,  Please fill in your details below and press submit<br><br>
-<label for=forename> First Name </label> 
-<input type="text" name="forename" maxlength = "11"  pattern="^0\d*${11}" title="forename: " ><br><br>   
-<label for=surname> Surname </label> 
-<input type="text" name="surname"  maxlength = "11"  pattern="^0\d*${11}" title="Surname: " ><br><br>
-    
-<label for=email> Email </label> 
-<input type="text" name="email" placeholder="Email@email.com"  pattern="/.+\@(?:[\w\d]+\.?)/g" title="Email: " ><br><br>
-<input type=submit value="Submit">
-      
-</form>
-     
-    
-<footer>Design by <a href="http://www.amandahorton.co.uk">Amanda Horton</a>   
-    
-    <!-- Social media links -->
-        <section class="social">
-        Follow us:
-            <ul>
-                <li><a href='https://www.facebook.com/amandasportraits'><img src="media/social/1_Facebook2_colored_svg-128.png" alt='Facebook' /></a></li>
-                
-                <li><a href='https://twitter.com/amandaportraits'><img src="media/social/1_Twitter3_colored_svg-128.png" alt='Twitter' /></a></li>
-                
-                <li><a href='https://www.instagram.com/portraitsbyamanda/'><img src="media/social/1_Instagram_colored_svg_1-128.png" alt='Instagram' /></a></li>
-                
-                <li><a href='https://www.pinterest.co.uk/amandasportraits/'><img src="media/social/1_Pinterest_colored_svg-128.png" alt='Pinterest' /></a></li>
-            </ul>
-        </section></footer>
-        
+	</form>
+
+<!-- Footer displays links to several social media websites-->
+	
+	<footer class="social">
+		<p> Design by Amanda Horton</p>
+		<!-- Social media links -->
+
+
+		<ul> Follow us:
+			<li><a href='https://www.facebook.com/amandasportraits'><img src="media/social/1_Facebook2_colored_svg-128.png" alt='Facebook' /></a></li>
+
+			<li><a href='https://twitter.com/amandaportraits'><img src="media/social/1_Twitter3_colored_svg-128.png" alt='Twitter' /></a></li>
+
+			<li><a href='https://www.instagram.com/portraitsbyamanda/'><img src="media/social/1_Instagram_colored_svg_1-128.png" alt='Instagram' /></a></li>
+
+			<li><a href='https://www.pinterest.co.uk/amandasportraits/'><img src="media/social/1_Pinterest_colored_svg-128.png" alt='Pinterest' /></a></li>
+		</ul>
+	</footer>
+
+	<!-- Script source put here so user settings would display correctly -->
+	<script src="index.js"> </script>
 </body>
 </html>
